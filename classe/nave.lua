@@ -44,11 +44,14 @@ local function novo(mundo, x, y)
             end
         end
 
-        if direita then
-            self.corpo:setAngle(self.corpo:getAngle() +self.w *dt)
-        end
-        if esquerda then
-            self.corpo:setAngle(self.corpo:getAngle() -self.w *dt)
+        if direita and not esquerda then
+            --self.corpo:setAngle(self.corpo:getAngle() +self.w *dt)
+            self.corpo:setAngularVelocity(self.w)
+        elseif esquerda and not direita then
+            --self.corpo:setAngle(self.corpo:getAngle() -self.w *dt)
+            self.corpo:setAngularVelocity(-self.w)
+        else
+            self.corpo:setAngularVelocity(0)
         end
 
     end
